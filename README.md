@@ -25,8 +25,8 @@ Make sure you have **Node.js 18+** and **npm** (or **yarn/pnpm**) installed.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/AbdullahSeraj/TEST-BUILDER---TEST-CASE.git
+cd TEST-BUILDER---TEST-CASE
 
 # Install dependencies
 npm install
