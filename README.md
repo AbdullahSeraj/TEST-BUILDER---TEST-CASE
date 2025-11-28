@@ -1,3 +1,5 @@
+![Logo](./public/HomePage.jpg "Home Page")
+
 # React + TypeScript + Vite + TailwindCSS Starter
 
 This is a starter project template for building React applications using **TypeScript**, **Vite**, and **TailwindCSS**.  
