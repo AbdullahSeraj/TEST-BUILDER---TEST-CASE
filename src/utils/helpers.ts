@@ -1,6 +1,5 @@
 import { BuilderElement, ElementType, GridInfo, Template, TemplateType } from "@/Types";
 
-
 export interface ProjectExport {
     project: { name: string; version: string; created: string; lastModified: string };
     canvas: { width: number; height: number; grid: GridInfo };
@@ -9,13 +8,12 @@ export interface ProjectExport {
 }
 
 export const TEMPLATES: Record<TemplateType, Template> = {
-    header: { type: 'header', defaultSize: { width: '100%', height: 80 }, content: { text: 'Site Başlığı' } },
-    footer: { type: 'footer', defaultSize: { width: '100%', height: 60 }, content: { copyright: '© 2024 Test Builder' } },
-    card: { type: 'card', defaultSize: { width: 300, height: 200 }, content: { title: 'Card', description: 'İçerik açıklaması' } },
-    'text-content': { type: 'text-content', defaultSize: { width: 650, height: 'auto' }, content: { html: '<p>Metin içeriği buraya gelecek</p>' } },
+    header: { type: 'header', defaultSize: { width: '100%', height: 80 }, content: { text: 'Site Title' } },
+    footer: { type: 'footer', defaultSize: { width: '100%', height: 60 }, content: { copyright: '© Test Builder | Test Case' } },
+    card: { type: 'card', defaultSize: { width: 300, height: 200 }, content: { title: 'Card', description: 'Card description...' } },
+    'text-content': { type: 'text-content', defaultSize: { width: 650, height: 'auto' }, content: { html: '<p>Text content will go here</p>' } },
     slider: { type: 'slider', defaultSize: { width: '100%', height: 400 }, content: { slides: [] } }
 };
-
 
 const idCounters = { header: 1, footer: 1, card: 1, 'text-content': 1, slider: 1 };
 export function uidFor(type: ElementType) {
@@ -46,8 +44,8 @@ export function validateExport(project: ProjectExport) {
         if (typeof p.x === 'number' && (p.x < 0 || p.x > project.canvas.width)) errors.push(`${el.id}: x out of range`);
         if (typeof p.y === 'number' && (p.y < 0 || p.y > project.canvas.height)) errors.push(`${el.id}: y out of range`);
         const checkDim = (v: string | number) => (typeof v === 'number' && v >= 0) || (typeof v === 'string' && /%$/.test(v) || v === 'auto');
-        if (!checkDim(p.width)) errors.push(`${el.id}: invalid width`);
-        if (!checkDim(p.height)) errors.push(`${el.id}: invalid height`);
+        if (!checkDim(p.width)) errors.push(`${el.id}: invalid`);
+        if (!checkDim(p.height)) errors.push(`${el.id}: invalid`);
     });
 
     const zs = project.elements.map(e => Number(e.position.zIndex || 0)).sort((a, b) => a - b);

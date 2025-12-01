@@ -14,7 +14,7 @@ interface LanguageProviderProps {
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-    const [selectLang, setSelectLang] = useState<string>(Cookies.get('i18next') || 'en');
+    const [selectLang, setSelectLang] = useState<string>(Cookies.get('i18next') || 'tr');
 
     useEffect(() => {
         if (selectLang) {

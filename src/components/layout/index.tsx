@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import Sidebar from '../sidebar';
 import { BuilderElement, CanvasSize, ElementType, GridConfig } from '@/Types';
 import { snap, TEMPLATES, uidFor } from '@/utils/helpers';
-import Header from "@/components/header"
+import Header from "@/components/header/Header"
 import ColumnBlock from '../home/ColumnBlock';
 import Canvas from '../home/Canvas';
 import Inspector from '../home/Inspector';
@@ -18,7 +18,7 @@ export default function Layout() {
         height: 800
     });
 
-    const [grid, setGrid] = useState<GridConfig>({
+    const [grid,] = useState<GridConfig>({
         enabled: true,
         size: 10,
         snap: true
@@ -28,7 +28,7 @@ export default function Layout() {
         const header: BuilderElement = {
             id: uidFor("header"),
             type: "header",
-            content: { text: "Site Başlığı" },
+            content: { text: "Site Title" },
             position: {
                 x: 0,
                 y: 0,
@@ -46,8 +46,8 @@ export default function Layout() {
             id: uidFor("card"),
             type: "card",
             content: {
-                title: "Content Card 1",
-                description: "Content description will be placed here..."
+                title: "Card Title",
+                description: "Card Description..."
             },
             position: { x: 50, y: 120, width: 300, height: 200, zIndex: 2 }
         };
@@ -56,8 +56,8 @@ export default function Layout() {
             id: uidFor("card"),
             type: "card",
             content: {
-                title: "New Card Title",
-                description: "Enter description..."
+                title: "Card Title",
+                description: "Card Description..."
             },
             position: { x: 380, y: 120, width: 300, height: 200, zIndex: 3 }
         };
@@ -65,7 +65,7 @@ export default function Layout() {
         const text: BuilderElement = {
             id: uidFor("text-content"),
             type: "text-content",
-            content: { html: "<p>Metin içeriği buraya gelecek</p>" },
+            content: { html: "<p>Text content will go here</p>" },
             position: {
                 x: 50,
                 y: 340,
@@ -79,7 +79,7 @@ export default function Layout() {
         const footer: BuilderElement = {
             id: uidFor("footer"),
             type: "footer",
-            content: { copyright: "© 2024 Test Builder" },
+            content: { copyright: "© Test Builder | Test Case" },
             position: {
                 x: 0,
                 y: 740,
@@ -149,7 +149,7 @@ export default function Layout() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "layout-export.json";
+        a.download = "test.json";
         a.click();
         URL.revokeObjectURL(url);
     }
@@ -235,6 +235,7 @@ export default function Layout() {
                     onTemplateDragEnd={onTemplateDragEnd}
                     onExport={onExport}
                     onLoadJSON={onLoadJSON}
+                    setElements={setElements}
                 />
 
                 <main className="ml-[20rem] flex-1 bg-white rounded-xl p-4 shadow-lg">
@@ -251,7 +252,6 @@ export default function Layout() {
                         selectedId={selectedId}
                         setSelectedId={setSelectedId}
                         canvasRef={canvasRef}
-                        createElementFromTemplate={createElementFromTemplate}
                         onCanvasDrop={onCanvasDrop}
                         onCanvasDragOver={onCanvasDragOver}
                     />
@@ -262,7 +262,6 @@ export default function Layout() {
                         setElements={setElements}
                         canvasSize={canvasSize}
                         grid={grid}
-                        setGrid={setGrid}
                         onExport={onExport}
                         setSelectedId={setSelectedId}
                         buildExport={buildExport}

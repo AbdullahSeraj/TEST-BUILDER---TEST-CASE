@@ -25,7 +25,7 @@ interface TextContentTemplate {
 interface SliderTemplate {
     type: 'slider';
     defaultSize: { width: string; height: number };
-    content: { slides: unknown[] }; // أو يمكنك تحديد شكل كل slide إذا معروف
+    content: { slides: unknown[] };
 }
 
 export type Template =
